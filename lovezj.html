@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Happy Girls' Day</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+
+<body>
+    <audio src="./music.mp3" autoplay="true" loop="loop"></audio>
+    <div id="back">
+        <div class="mask"></div>
+        <!-- 设置展示的图片，github pages不能有后台程序只能一条一条手动添加了 囧 -->
+        <div id="carousel"  class="carousel slide carousel-fade carousel-position">
+            <div class="carousel-inner" style="width: 100%;height: 100%;" id="background">
+                <div class="item active" style="width: 100%;height: 100%;">
+                    <div style="width: 100%;height: 100%;background:url(./imgs/1.JPG);background-size: cover;"></div>
+                </div>
+                <div class="item" style="width: 100%;height: 100%;">
+                    <div style="width: 100%;height: 100%;background-image: url(./imgs/0.JPG) ;background-size: cover;"></div>
+                </div>
+                <div class="item" style="width: 100%;height: 100%;">
+                    <div style="width: 100%;height: 100%;background-image: url(./imgs/2.JPG) ;background-size: cover;"></div>
+                </div>
+                <div class="item" style="width: 100%;height: 100%;">
+                    <div style="width: 100%;height: 100%;background-image: url(./imgs/3.JPG) ;background-size: cover;"></div>
+                </div>
+                <div class="item" style="width: 100%;height: 100%;">
+                    <div style="width: 100%;height: 100%;background-image: url(./imgs/4.JPG);background-size: cover;"></div>
+                </div>
+                <div class="item" style="width: 100%;height: 100%;">
+                    <div style="width: 100%;height: 100%;background-image: url(./imgs/12.JPG);background-size: cover;"></div>
+                </div>
+                <div class="item" style="width: 100%;height: 100%;">
+                    <div style="width: 100%;height: 100%;background-image: url(./imgs/7.JPG);background-size: cover;"></div>
+                </div>
+                <div class="item" style="width: 100%;height: 100%;">
+                    <div style="width: 100%;height: 100%;background-image: url(./imgs/8.JPG);background-size: cover;"></div>
+                </div>
+                <div class="item" style="width: 100%;height: 100%;">
+                    <div style="width: 100%;height: 100%;background-image: url(./imgs/6.JPG);background-size: cover;"></div>
+                </div>
+                <div class="item" style="width: 100%;height: 100%;">
+                    <div style="width: 100%;height: 100%;background-image: url(./imgs/9.JPG);background-size: cover;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal show" style="top:24% ;" id="Modal">
+        <div class="modal-dialog" style="opacity: .9">
+            <div class="modal-content" style="opacity:.85">
+                <div class="modal-header">
+
+                    <h1 class="text-center" style="color: #A94442;font-family: 'JournalRegular', Arial, sans-serif;font-size: 7rem;">Happy Girls' Day</h1>
+                    <p class="text-center small-title">张静</p>
+                    <p class="text-center small-title">The times we together</p>
+                </div>
+                <div class="modal-body text-center" style="line-height: 1.5rem;font-family: 'JournalRegular', Arial, sans-serif;font-size: 3rem;">
+                    <p>
+                        <span id="day" class="time-font"></span><span style="color:#A94442">/&nbsp;</span><span id="hour" class="time-font"></span><span style="color:#A94442">/&nbsp;</span><span id="minute" class="time-font"></span><span style="color:#A94442">/&nbsp;</span><span id="second" class="time-font"></span>
+                    </p>
+                    <p>
+                        days/hours/min/sec
+                    </p>
+                    <p class="text-center" style="color:#A94442;font-size: 17px" id="say"></p
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./js/jquery-1.12.2.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/count-time.js"></script>
+    <script>
+
+    $(function() {
+        //设置起始日期
+        countTime('2018/01/28 08:00', 'day', 'hour', 'minute', 'second');
+        var days = $('#day').text();
+
+        // 设置标题
+        
+        $(document).attr("title", "宝贝女神节快乐!");
+
+        //设置每一张图片对应的文字
+        var says = new Array(
+            "从让我沦陷的这张开始吧,好温柔啊",
+            "宝宝真的看不出年龄啊，我只能默默哭泣",
+            "这张都高糊了,小细腿也给截没了",
+            "让人心惊动魄的泰国之旅...",
+            "宝贝的小蛮腰穿这种裙子真的不要太好看",
+            "没有见过的发型,迷人的一字锁骨,不止想看嘻嘻",
+            "作为程序员的我最喜欢的这身装扮,嫉妒大象",
+            "貌似对狗情有独钟呢,要不要养一个,汪汪汪",
+            "不知道你在祈祷啥,只希望我不在你身边的日子里平平安安,别再受伤了晕",
+            "落日余晖,最容易想象:白头永携,桂馥兰馨"
+        );
+
+
+        var start = function() {
+            var index = 0;
+            var rate = 8000;
+            $('#say').text(says[(index++) % says.length]);
+         	var _play = function () {
+         		$('#say').hide();
+                $('#say').text(says[(index++) % says.length]);
+                $('#say').fadeToggle();
+                $('#carousel').carousel('next');
+         	};
+            setInterval(_play, rate);
+        }();
+
+    });
+    </script>
+</body>
+
+</html>
